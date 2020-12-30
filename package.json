@@ -1,0 +1,24 @@
+{
+  "name": "social-network",
+  "version": "1.0.0",
+  "description": "This is a social network demo project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thavorac/courses.git"
+  },
+  "author": "thavorac",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thavorac/courses/issues"
+  },
+  "homepage": "https://github.com/thavorac/courses#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
+}
