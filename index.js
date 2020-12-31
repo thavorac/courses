@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const path = require("path");
 const app = express();
 
 const postRoutes = require('./routes/admin');
@@ -10,6 +11,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(postRoutes);
 mongoose.connect('mongodb+srv://user1:helloword@cluster0.qyreg.mongodb.net/Post?retryWrites=true&w=majority')
