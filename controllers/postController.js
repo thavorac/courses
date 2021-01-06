@@ -18,7 +18,7 @@ exports.createPost = (req, res) => {
   });
   post.save().then(result => {
     console.log('post is created');
-    res.json({"message" : "success!"});
+    res.json({"message" : "success!", "data": result});
     //res.redirect('/'); // localhost:3000
   }).catch(err => {
     console.log(err);
