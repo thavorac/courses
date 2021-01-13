@@ -24,3 +24,26 @@ exports.createPost = (req, res) => {
     console.log(err);
   })
 }
+
+exports.getPosts = (req, res) => {
+  Post.find()
+      .then(posts => {
+        console.log(posts);
+        res.json(posts);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+}
+
+exports.deletePost = (req, res) => {
+  const postId = req.params.postId;
+  Post.findByIdAndRemove(postId)
+      .then(() => {
+        console.log('Post is deleted');
+        res.json({"message": "success!"});
+      })
+      .catch(err => {
+        console.log(err);
+      })
+}
