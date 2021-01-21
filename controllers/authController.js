@@ -1,13 +1,34 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const User = require('../models/users');
 exports.signIn = (req, res) => {
-  res.render('signin', {error: false});
+  if(req.session.userId) {
+    res.redirect('/');
+  } else {
+    res.render('signin', {error: false});
+  }
 }
 exports.signUp = (req, res) => {
-  res.render('signup');
+  if(req.session.userId) {
+    res.redirect('/');
+  } else {
+    res.render('signup');
+  }
 }
 exports.dashboard = (req, res) => {
-  res.render('dashboard');
+  if(req.session.userId) {
+    User.findOne({_id: req.session.userId}).then(user => {
+      console.log(user);
+      if(user) {
+        res.render('dashboard', {user: user});
+      } else {
+        res.render('dashboard', {user: null});
+      }
+    }).catch(err => {
+      console.log(err);
+    })
+  } else {
+    res.redirect('/signin');
+  }
 }
 exports.login = (req, res) => {
   const username = req.body.username;
@@ -21,6 +42,8 @@ exports.login = (req, res) => {
           // if password is correct, return success, with cookie save
           res.cookie('username', username, {expire: 3600 * 1000});
           res.cookie('logged-time', new Date().toISOString(), {expire: 3600 * 1000});
+          // store user information to session
+          req.session.userId = result[0]._id;
           res.redirect("/");
         } else {
           // else return fail
@@ -49,4 +72,11 @@ exports.register = (req, res) => {
   }).catch(err => {
     res.render('signup', {message: "Signup fail, try again"});
   })
+}
+
+exports.logout = (req, res) => {
+  // clear session
+  req.session.destroy();
+  // redirect to sigin
+  res.redirect('/signin');
 }

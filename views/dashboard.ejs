@@ -6,6 +6,13 @@
   <title>Document</title>
 </head>
 <body>
-  This is dashboard page
+  This is dashboard page <br/>
+  <% if(user) {%>
+  Hello <%= user.username %>
+  <% } %>
+  <br/>
+  <form action="http://localhost:3000/logout" method="post">
+    <button type="submit">Logout</button>
+  </form>
 </body>
 </html>
