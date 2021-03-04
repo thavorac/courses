@@ -7,16 +7,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="./assets/css/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="app">
     <table>
       <tr>
         <td colspan="5">
           <div id="screen">
             <span id="screen_top">M=0</span>
             <div id="screen_bottom">
-              <span id="operand1">0</span>
+              <span id="operand1">{{ result }}</span>
               <span id="operator"></span>
               <span id="operand2"></span>
             </div>
@@ -38,18 +39,20 @@
           <button type="button" class="btn btn-warning">M+</button>
         </td>
         <td>
-          <button type="button" class="btn btn-light"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-light" v-on:click="clearByOne">
+              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            </button>
         </td>
       </tr>
       <tr>
         <td>
-          <button type="button" class="btn btn-light">7</button>
+          <button type="button" class="btn btn-light" v-on:click="number(7)">7</button>
         </td>
         <td>
-          <button type="button" class="btn btn-light">8</button>
+          <button type="button" class="btn btn-light" v-on:click="number(8)">8</button>
         </td>
         <td>
-          <button type="button" class="btn btn-light">9</button>
+          <button type="button" class="btn btn-light" v-on:click="number(9)">9</button>
         </td>
         <td>
           <button type="button" class="btn btn-secondary">÷</button>
@@ -60,13 +63,13 @@
       </tr>
       <tr>
         <td>
-          <button type="button" class="btn btn-light">4</button>
+          <button type="button" class="btn btn-light" v-on:click="number(4)">4</button>
         </td>
         <td>
-          <button type="button" class="btn btn-light">5</button>
+          <button type="button" class="btn btn-light" v-on:click="number(5)">5</button>
         </td>
         <td>
-          <button type="button" class="btn btn-light">6</button>
+          <button type="button" class="btn btn-light" v-on:click="number(6)">6</button>
         </td>
         <td>
           <button type="button" class="btn btn-secondary">x</button>
@@ -77,27 +80,27 @@
       </tr>
       <tr>
         <td>
-          <button type="button" class="btn btn-light">1</button>
+          <button type="button" class="btn btn-light" v-on:click="number(1)">1</button>
         </td>
         <td>
-          <button type="button" class="btn btn-light">2</button>
+          <button type="button" class="btn btn-light" v-on:click="number(2)">2</button>
         </td>
         <td>
-          <button type="button" class="btn btn-light">3</button>
+          <button type="button" class="btn btn-light" v-on:click="number(3)">3</button>
         </td>
         <td rowspan="2">
-          <button type="button" class="btn btn-secondary long-btn">+</button>
+          <button type="button" class="btn btn-secondary long-btn" v-on:click="addNumber">+</button>
         </td>
         <td rowspan="2">
-          <button type="button" class="btn btn-primary long-btn">=</button>
+          <button type="button" class="btn btn-primary long-btn" v-on:click="equal">=</button>
         </td>
       </tr>
       <tr>
         <td>
-          <button type="button" class="btn btn-danger">C</button>
+          <button type="button" class="btn btn-danger" v-on:click="clearAll">C</button>
         </td>
         <td>
-          <button type="button" class="btn btn-light">0</button>
+          <button type="button" class="btn btn-light" v-on:click="number(0)">0</button>
         </td>
         <td>
           <button type="button" class="btn btn-light">.</button>
@@ -108,5 +111,37 @@
   <div class="alert alert-danger" id="message_panel" role="alert">
     something wrong here
   </div>
+  <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          result: 0,
+          calNum: 0,
+        },
+        methods: {
+          number: function (num) {
+            if (this.result != 0) {
+              this.result = this.result * 10;
+              this.result = this.result + num;
+            } else {
+              this.result = num;
+            }
+          },
+          clearByOne: function () {
+            this.result = this.result / 10 - (this.result % 10) / 10;
+          },
+          clearAll: function () {
+            this.result = 0;
+          },
+          addNumber: function () {
+            this.calNum = this.result;
+            this.result = 0;
+          },
+          equal: function () {
+            this.result += this.calNum;
+          },
+        },
+      });
+    </script>
 </body>
 </html>
