@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app">
+    <big-box></big-box>
+  </div>
+  <script>
+    // Create a Vue application
+    const app = Vue.createApp({})
+    app.component('button-counter', {
+      data() {
+        return {
+          count: 0
+        }
+      },
+      methods: {
+        increase: function () {
+          this.count++;
+        }
+      },
+      template: `
+        <button v-on:click="increase()">
+          You clicked me {{ count }} times.
+        </button>`
+    })
+    app.component('big-box', {
+      data() {
+        return {
+          name: 'big box'
+        }
+      },
+      template: `
+        <div>
+          {{name}}
+          <hr/>
+          <button-counter></button-counter>
+        </div>`
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>
