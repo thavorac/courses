@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pass Data From Parent to Child</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app">
+    <child-component v-on:did-something="myChildDidSomething()"></child-component>
+  </div>
+  <script>
+    // Create a Vue application
+    const app = Vue.createApp({
+      methods: {
+        myChildDidSomething() {
+          alert('From parent: Oh!! my child just did something.')
+        }
+      }
+    })
+    app.component('child-component', {
+      emits: [
+        'did-something'
+      ],
+      methods: {
+        doSomething() {
+          this.$emit("did-something")
+        }
+      },
+      template: `
+        <div>
+          I'm Child!
+          <hr/>
+          <button v-on:click="doSomething()">I'm doing something</button>
+        </div>`
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>
