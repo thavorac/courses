@@ -6,20 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://unpkg.com/vue@next"></script>
   <title>Component Slot</title>
+  <style>
+    .delete {
+      color: red;
+    }
+    .cancel {
+      color: grey;
+    }
+    .submit {
+      color: green;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
-    <child-component>Hello World</child-component>
+    <child-component type="delete">
+      Delete
+    </child-component>
+    <child-component type="cancel">
+      Cancel
+    </child-component>
+    <child-component type="submit">
+      Submit
+    </child-component>
   </div>
   <script>
     const app = Vue.createApp({
       components: {
         "child-component": {
+          props: ['type'],
           template: `
-            <div>
-              This is originally in child component <br/>
+            <button v-bind:class="type">
               <slot></slot>
-            </div>
+            </button>
           `
         }
       }
