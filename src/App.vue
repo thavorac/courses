@@ -4,7 +4,8 @@
     <MyButton v-on:deleted="deleteIsCalled()" state="delete"></MyButton>
 
     <br/>
-    <TodoItem :todo="todo"></TodoItem>
+    <TodoItem v-on:marked-as-pending="pendingIsCalled()" v-on:marked-as-done="doneIsCalled()" :todo="todo"></TodoItem>
+    <TodoItem v-on:marked-as-pending="pendingIsCalled()" v-on:marked-as-done="doneIsCalled()" :todo="todo1"></TodoItem>
   </div>
 </template>
 
@@ -18,6 +19,10 @@ export default {
       todo: {
         task: "hello",
         state: "done"
+      },
+      todo1: {
+        task: "hello",
+        state: "pending"
       }
     }
   },
@@ -30,6 +35,12 @@ export default {
     },
     deleteIsCalled() {
       console.log('deleted');
+    },
+    pendingIsCalled() {
+      console.log("pending");
+    },
+    doneIsCalled() {
+      console.log("done");
     }
   }
 }

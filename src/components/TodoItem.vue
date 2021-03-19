@@ -1,5 +1,5 @@
 <template>
-  <div class="todo-item" :class="todo.state">
+  <div v-on:click="clickTodo()" class="todo-item" :class="todo.state">
     <span>{{ todo.task }}</span>
   </div>
 </template>
@@ -7,7 +7,25 @@
 <script>
 export default {
   name: "TodoItem",
-  props: ["todo"]
+  props: ["todo"],
+  emits: ["marked-as-pending", "marked-as-done"],
+  data() {
+    return {
+      state: "pending"
+    }
+  },
+  methods: {
+    clickTodo() {
+      console.log('clicked');
+      if(this.state == "pending") {
+        this.state = "done"
+        this.$emit("marked-as-done");
+      } else {
+        this.state = "pending"
+        this.$emit("marked-as-pending");
+      }
+    }
+  }
 }
 </script>
 
