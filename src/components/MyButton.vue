@@ -9,12 +9,17 @@
 export default {
   name: "MyButton",
   props: ['state'],
+  emits: ["added", "deleted"],
   data() {
     return {}
   },
   methods: {
     clickButton() {
-      console.log('button is clicked')
+      if(this.state == "add") {
+        this.$emit("added");
+      } else {
+        this.$emit("deleted")
+      }
     }
   }
 }
@@ -23,6 +28,8 @@ export default {
 <style scoped>
   button {
     border: 1px solid black;
+    color: white;
+    padding: 10px;
   }
   .delete {
     background-color: red;

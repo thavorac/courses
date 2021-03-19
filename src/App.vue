@@ -1,6 +1,8 @@
 <template>
-  <MyButton state="add"></MyButton>
-  <MyButton state="delete"></MyButton>
+  <div>
+    <MyButton v-on:added="addIsCalled()" state="add"></MyButton>
+    <MyButton v-on:deleted="deleteIsCalled()" state="delete"></MyButton>
+  </div>
 </template>
 
 <script>
@@ -8,7 +10,15 @@
 
 export default {
   name: 'App',
-  components: {}
+  components: {},
+  methods: {
+    addIsCalled() {
+      console.log('added');
+    },
+    deleteIsCalled() {
+      console.log('deleted');
+    }
+  }
 }
 </script>
 
