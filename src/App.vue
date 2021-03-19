@@ -2,15 +2,28 @@
   <div>
     <MyButton v-on:added="addIsCalled()" state="add"></MyButton>
     <MyButton v-on:deleted="deleteIsCalled()" state="delete"></MyButton>
+
+    <br/>
+    <TodoItem :todo="todo"></TodoItem>
   </div>
 </template>
 
 <script>
-
+import TodoItem from './components/TodoItem.vue';
 
 export default {
   name: 'App',
-  components: {},
+  data() {
+    return {
+      todo: {
+        task: "hello",
+        state: "done"
+      }
+    }
+  },
+  components: {
+    TodoItem
+  },
   methods: {
     addIsCalled() {
       console.log('added');
