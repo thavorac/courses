@@ -1,15 +1,14 @@
 <template>
-  <MyButton></MyButton>
+  <MyButton state="add"></MyButton>
+  <MyButton state="delete"></MyButton>
 </template>
 
 <script>
-import MyButton from './components/MyButton.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    MyButton
-  }
+  components: {}
 }
 </script>
 

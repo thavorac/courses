@@ -8,10 +8,9 @@
 <script>
 export default {
   name: "MyButton",
+  props: ['state'],
   data() {
-    return {
-      state: 'delete'  // delete or add
-    }
+    return {}
   },
   methods: {
     clickButton() {
