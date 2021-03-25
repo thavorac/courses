@@ -61,7 +61,15 @@ export default {
       // Remove 1 item from taskList
       // console.log('removing item from taskList');
       //console.log('remove this id', [id])
-      this.taskList = this.taskList.filter(todoItem => todoItem.id != id)
+      // this.taskList = this.taskList.filter(todoItem => todoItem.id != id)
+      let newTaskList = [];
+      let item;
+      for (item of this.taskList) {
+        if(item.id != id) {
+          newTaskList.push(item)
+        }
+      }
+      this.taskList = newTaskList;
     },
     addIsCalled() {
       console.log('added');
