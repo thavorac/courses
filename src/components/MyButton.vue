@@ -8,7 +8,7 @@
 <script>
 export default {
   name: "MyButton",
-  props: ['state'],
+  props: ['state', "id"],
   emits: ["added", "deleted"],
   data() {
     return {}
@@ -18,7 +18,7 @@ export default {
       if(this.state == "add") {
         this.$emit("added");
       } else {
-        this.$emit("deleted")
+        this.$emit("deleted", this.id)
       }
     }
   }
@@ -29,7 +29,7 @@ export default {
   button {
     border: 1px solid black;
     color: white;
-    padding: 10px;
+    padding: 5px;
   }
   .delete {
     background-color: red;

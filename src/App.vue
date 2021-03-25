@@ -1,11 +1,24 @@
+// Root Component
 <template>
   <div>
-    <MyButton v-on:added="addIsCalled()" state="add"></MyButton>
+    <!-- <MyButton v-on:added="addIsCalled()" state="add"></MyButton>
     <MyButton v-on:deleted="deleteIsCalled()" state="delete"></MyButton>
 
     <br/>
     <TodoItem v-on:marked-as-pending="pendingIsCalled()" v-on:marked-as-done="doneIsCalled()" :todo="todo"></TodoItem>
-    <TodoItem v-on:marked-as-pending="pendingIsCalled()" v-on:marked-as-done="doneIsCalled()" :todo="todo1"></TodoItem>
+    <TodoItem v-on:marked-as-pending="pendingIsCalled()" v-on:marked-as-done="doneIsCalled()" :todo="todo1"></TodoItem> -->
+    <!-- Option 1 -->
+    <TodoItem 
+        @todo-deleted="deleteTodo"
+        :key="item.id" 
+        v-for="item in taskList" 
+        :todo="item">
+    </TodoItem>
+    
+    <!-- Option 2 -->
+    <!-- <template :key="todoItem.id" v-for="todoItem in taskList">
+      <TodoItem :todo="todoItem"></TodoItem>
+    </template> -->
   </div>
 </template>
 
@@ -16,20 +29,40 @@ export default {
   name: 'App',
   data() {
     return {
-      todo: {
-        task: "hello",
-        state: "done"
-      },
-      todo1: {
-        task: "hello",
-        state: "pending"
-      }
+      taskList: [
+        {
+          id: 1,
+          task: "Wash cloths",
+          state: "pending"
+        },
+        {
+          id: 2,
+          task: "Submit assignment",
+          state: "pending"
+        },
+        {
+          id: 3,
+          task: "Write user story",
+          state: "done"
+        },
+        {
+          id: 4,
+          task: "Read book",
+          state: "pending"
+        }
+      ],
     }
   },
   components: {
-    TodoItem
+    TodoItem // Local registration
   },
   methods: {
+    deleteTodo(id) {
+      // Remove 1 item from taskList
+      // console.log('removing item from taskList');
+      //console.log('remove this id', [id])
+      this.taskList = this.taskList.filter(todoItem => todoItem.id != id)
+    },
     addIsCalled() {
       console.log('added');
     },
