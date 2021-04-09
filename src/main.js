@@ -37,10 +37,17 @@ const store = createStore({
           id: "ueueus-owiiw-iwiww"
         },
         {
-          content: "wow ... amazing ...111",
+          content: "Another comment",
           commentedAt: "09/04/2021 15:57:20",
           commentedBy: "asdfa-asdfa-asdfa",
           postId: "asdfa-asdfa-asdfa",
+          id: "ueueus-owiiw-iwiww"
+        },
+        {
+          content: "wow ... amazing ...111",
+          commentedAt: "09/04/2021 15:57:20",
+          commentedBy: "asdfa-asdfa-asdfa",
+          postId: "asdfb-asdfa-asdfa",
           id: "ueueuy-owiiw-iwiww"
         }
       ]
@@ -58,6 +65,9 @@ const store = createStore({
     },
     getComments(state) {
       return state.comments
+    },
+    getCommentsByPost: (state) => (postId) => {
+      return state.comments.filter(comment => comment.postId == postId)
     }
   }
 })
