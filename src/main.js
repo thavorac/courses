@@ -53,7 +53,12 @@ const store = createStore({
 
   },
   getters: {
-
+    getPosts(state) {
+      return state.posts
+    },
+    getComments(state) {
+      return state.comments
+    }
   }
 })
 
