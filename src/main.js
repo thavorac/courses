@@ -5,7 +5,20 @@ import App from './App.vue'
 // Create vuex store
 const store = createStore({
   state() {
-    return {}
+    return {
+      user: {
+        name: "thavorac",  // string
+        gender: "M",
+        phone: "012345678",
+        id: "basdfa-asdfa-asdfad"  // uuid()
+      },
+      posts: [
+        {
+          
+        }
+      ],
+      comments: []
+    }
   },
   mutations: {
 
