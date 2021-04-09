@@ -14,10 +14,36 @@ const store = createStore({
       },
       posts: [
         {
-          
+          title: "New Title",
+          content: "blah blah ... of the new title",
+          postedAt: "09/04/2021 15:55:20",
+          postedBy: "basdfa-asdfa-asdfad",
+          id: "asdfa-asdfa-asdfa"
+        },
+        {
+          title: "New Title 1",
+          content: "blah blah ... of the new title 1",
+          postedAt: "09/04/2021 15:55:20",
+          postedBy: "basdfa-asdfa-asdfad",
+          id: "asdfb-asdfa-asdfa"
         }
       ],
-      comments: []
+      comments: [
+        {
+          content: "wow ... amazing ...",
+          commentedAt: "09/04/2021 15:57:20",
+          commentedBy: "asdfa-asdfa-asdfa",
+          postId: "asdfa-asdfa-asdfa",
+          id: "ueueus-owiiw-iwiww"
+        },
+        {
+          content: "wow ... amazing ...111",
+          commentedAt: "09/04/2021 15:57:20",
+          commentedBy: "asdfa-asdfa-asdfa",
+          postId: "asdfa-asdfa-asdfa",
+          id: "ueueuy-owiiw-iwiww"
+        }
+      ]
     }
   },
   mutations: {
