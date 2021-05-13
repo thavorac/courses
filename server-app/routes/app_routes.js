@@ -11,4 +11,5 @@ router.get('/', (req, res) => {
 })
 
 router.get('/posts', postController.getPosts);
+router.post('/posts', postController.createPost);
 module.exports = router
