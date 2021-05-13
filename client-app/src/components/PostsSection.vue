@@ -11,9 +11,9 @@
             </div>
             <div class="flex-grow-1 pl-2">
               <a class="text-decoration-none" href="#">
-                <h2 class="text-capitalize h5 mb-0">Shushant Singh</h2>
+                <h2 class="text-capitalize h5 mb-0">{{post.user}}</h2>
               </a> 
-              <p class="small text-secondary m-0 mt-1">1 day ago</p>
+              <p class="small text-secondary m-0 mt-1">{{post.postedAt}}</p>
             </div>
             
             <div class="dropdown">
@@ -123,6 +123,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+// import axios from 'axios'
 export default {
   name: 'HelloWorld',
   props: {

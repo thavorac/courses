@@ -12,7 +12,7 @@ const store = createStore({
   mutations: {
     UPDATE_POSTS(state, posts) {
       console.log('mutations', posts)
-      state.posts = posts
+      state.posts = posts.data
     },
     UPDATE_USER(state, user) {
       state.user = user
