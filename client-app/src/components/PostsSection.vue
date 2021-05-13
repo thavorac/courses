@@ -40,7 +40,7 @@
             <div class="">
               <ul class="list-group list-group-horizontal">
                 <li class="list-group-item flex-fill text-center p-0 px-lg-2 border border-0">
-                  <a class="small text-decoration-none" href="#">
+                  <a @click="clickLike(post._id)" class="small text-decoration-none" href="#">
                     <i class="far fa-thumbs-up"></i> {{post.nbLike}} Like
                   </a>
                 </li>
@@ -123,7 +123,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   props: {
@@ -133,6 +133,18 @@ export default {
     ...mapGetters([
       "getPosts"
     ]), // mapGetters() will return ["getPosts"] => "getPosts"
+  },
+  methods: {
+    clickLike(postId) {
+      // alert(postId)
+      axios.post(`http://localhost:3000/like-post`, { postId })
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+    }
   }
 }
 </script>

@@ -12,4 +12,5 @@ router.get('/', (req, res) => {
 
 router.get('/posts', postController.getPosts);
 router.post('/posts', postController.createPost);
+router.post('/like-post', postController.likePost);
 module.exports = router

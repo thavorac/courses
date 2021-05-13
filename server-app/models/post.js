@@ -9,6 +9,18 @@ const postSchema = new Schema({
   user: {
     type: String,
     required: true
+  },
+  nbLike: {
+    type: Number,
+    required: true
+  },
+  nbShare: {
+    type: Number,
+    required: true
+  },
+  nbComment: {
+    type: Number,
+    required: true
   }
 }, {collection: 'posts'});
 
