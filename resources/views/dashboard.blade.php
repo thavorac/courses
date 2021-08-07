@@ -7,6 +7,6 @@
   <title>Document</title>
 </head>
 <body>
-  Hello, this is new welcome page from laravel
+  Dashboard page
 </body>
 </html>
