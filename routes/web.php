@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,18 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
   return view('dashboard');
 });
+
+// Product routes
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/product/form', [ProductController::class, 'create']);
 Route::post('/product/form', [ProductController::class, 'store']);
+
+// Author routes
+Route::get('/authors', [AuthorController::class, 'index']);
+Route::get('/author/form', [AuthorController::class, 'create']);
+Route::post('/author/form', [AuthorController::class, 'store']);
+Route::get('/authors/{id}/posts', [AuthorController::class, 'listPosts']);
+
+// Post routes
+Route::get('/post/form', [PostController::class, 'create']);
+Route::post('/post/form', [PostController::class, 'store']);
